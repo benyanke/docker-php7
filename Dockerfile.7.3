@@ -7,7 +7,8 @@ WORKDIR /tmp
 RUN apt-get update -y && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
-    software-properties-common
+    software-properties-common && \
+    add-apt-repository ppa:ondrej/php -y
 
 # Common PHP pages across containers
 RUN apt-get update -y && \

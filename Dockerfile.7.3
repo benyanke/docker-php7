@@ -35,8 +35,10 @@ RUN apt-get update -y && \
     php7.3-xml \
     php7.3-zip \
     php7.3-soap \
+    php7.3-bcmath \
+    php7.3-dev \
     php-pear \
-    php7.3-dev make  \
+    make \
     wget \
     git \
     curl && apt-get clean && rm -rf /var/lib/apt/lists/*

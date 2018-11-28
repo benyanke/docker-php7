@@ -13,3 +13,10 @@ This image works is used across the [Docker Laravel](https://github.com/vcarreir
 
 Images used by this:
   - [benyanke/nginx-php7-fpm](https://hub.docker.com/r/benyanke/nginx-php7-fpm) 
+
+## New Packages and Modules
+
+I intend these images to be as flexible as possible, so if you need additional PHP modules, please request it, 
+or put in a PR to add it.
+
+

@@ -1,23 +1,31 @@
-FROM ubuntu:bionic
+FROM ubuntu:18.04
 
 MAINTAINER "Ben Yanke" <ben@benyanke.com>
 
 WORKDIR /tmp
 
+# Installing base packages, adding PHP repo
 RUN apt-get update -y && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
-    software-properties-common
+    software-properties-common curl \
+    php-pear apt-transport-https locales gnupg wget && \
+    LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
 
-# Common PHP pages across containers
-RUN add-apt-repository ppa:ondrej/php -y && \
-    apt-get update -y && \
+# Install dependencies for MS SQLSRV PHP Driver
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+    curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+    apt-get update -yqq && \
+    ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev unixodbc && \
+    rm -r /var/lib/apt/lists/*
+
+# Install Common PHP modules
+RUN apt-get update -y && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
     zip \
     unzip \
     php7.1-cli \
-    php7.1-mcrypt \
     php7.1-mysqlnd \
     php7.1-apcu \
     php7.1-memcached \
@@ -33,13 +41,26 @@ RUN add-apt-repository ppa:ondrej/php -y && \
     php7.1-ssh2 \
     php7.1-gd \
     php7.1-gmp \
+    php7.1-xml \
     php7.1-zip \
     php7.1-soap \
+    php7.1-bcmath \
+    php7.1-dev \
     php7.1-ldap \
     php-pear \
-    php7.1-dev make  \
+    mcrypt \
+    make \
     wget \
     git \
     curl && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+# Install SQLSRV PHP Drivers
+RUN pecl install pdo_sqlsrv && \
+    pecl install sqlsrv
+
+# TODO:downgrade permissions at some point using a format like this
+# RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres
+# USER postgres
 
 CMD ["php", "-a"]

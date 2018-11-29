@@ -20,7 +20,7 @@ I intend these images to be as flexible as possible, so if you need additional P
 or put in a PR to add it.
 
 
-## SQL Server
+## Microsoft SQL Server Driver
 
 These images provide the SQL server driver (both in standard and PDO flavors). The `7.1` and `7.2` images support this, and 
 7.3 will support it very soon, as discussed by [@yitam](https://github.com/yitam) in [this thread on the 

@@ -4,7 +4,7 @@ This is a [Docker](http://www.docker.com) image for [PHP 7](http://php.net/) sui
 
 An automated build for this repo is available on the [Docker Hub](https://registry.hub.docker.com/u/benyanke/php7/).
 
-This is a fork of (vcarreira/php7)[https://github.com/vcarreira/docker-php7].
+This is a fork of [vcarreira/php7](https://github.com/vcarreira/docker-php7).
 
 This includes php 7.1, 7.2, and 7.3, linked to docker tags `7.1`, `7.2`, and `7.3`.
 
@@ -20,3 +20,10 @@ I intend these images to be as flexible as possible, so if you need additional P
 or put in a PR to add it.
 
 
+## SQL Server
+
+These images provide the SQL server driver (both in standard and PDO flavors). The `7.1` and `7.2` images support this, 
+and 7.3 will support it very soon, as discussed by @yitam in Microsoft/msphpsql#847. There is a dockerfile in `/other`
+which will be used once the PHP SQLSRV driver goes GA for php 7.3.
+
+This driver is still in testing, though will be production ready soon.

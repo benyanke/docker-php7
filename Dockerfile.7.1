@@ -60,10 +60,8 @@ RUN pecl install pdo_sqlsrv && \
     pecl install sqlsrv && \
     echo "sqlsrv.so" > /etc/php/7.1/mods-available/sqlsrv.ini && \
     echo "pdo_sqlsrv.so" > /etc/php/7.1/mods-available/pdo_sqlsrv.ini && \
-    ln -s /etc/php/7.1/mods-available/sqlsrv.ini /etc/php/7.1/cli/conf.d/sqlsrv.ini && \
-    ln -s /etc/php/7.1/mods-available/sqlsrv.ini /etc/php/7.1/fpm/conf.d/sqlsrv.ini && \
-    ln -s /etc/php/7.1/mods-available/pdo_sqlsrv.ini /etc/php/7.1/cli/conf.d/pdo_sqlsrv.ini && \
-    ln -s /etc/php/7.1/mods-available/pdo_sqlsrv.ini /etc/php/7.1/fpm/conf.d/pdo_sqlsrv.ini
+    phpenmod sqlsrv pdo_sqlsrv && \
+    phpenmod sqlsrv sqlsrv
 
 # TODO:downgrade permissions at some point using a format like this
 # RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres

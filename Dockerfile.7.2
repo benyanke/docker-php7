@@ -57,7 +57,13 @@ RUN apt-get update -y && \
 
 # Install SQLSRV PHP Drivers
 RUN pecl install pdo_sqlsrv && \
-    pecl install sqlsrv
+    pecl install sqlsrv && \
+    echo "sqlsrv.so" > /etc/php/7.2/mods-available/sqlsrv.ini && \
+    echo "pdo_sqlsrv.so" > /etc/php/7.2/mods-available/pdo_sqlsrv.ini && \
+    ln -s /etc/php/7.2/mods-available/sqlsrv.ini /etc/php/7.2/cli/conf.d/sqlsrv.ini && \
+    ln -s /etc/php/7.2/mods-available/sqlsrv.ini /etc/php/7.2/fpm/conf.d/sqlsrv.ini && \
+    ln -s /etc/php/7.2/mods-available/pdo_sqlsrv.ini /etc/php/7.2/cli/conf.d/pdo_sqlsrv.ini && \
+    ln -s /etc/php/7.2/mods-available/pdo_sqlsrv.ini /etc/php/7.2/fpm/conf.d/pdo_sqlsrv.ini
 
 # TODO:downgrade permissions at some point using a format like this
 # RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres

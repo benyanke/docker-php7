@@ -58,8 +58,8 @@ RUN apt-get update -y && \
 # Install SQLSRV PHP Drivers
 RUN pecl install pdo_sqlsrv && \
     pecl install sqlsrv && \
-    printf "; priority=30\nsqlsrv.so\n" > /etc/php/7.2/mods-available/sqlsrv.ini && \
-    printf "; priority=30\npdo_sqlsrv.so\n" > /etc/php/7.2/mods-available/pdo_sqlsrv.ini && \
+    printf "; priority=30\nextension=sqlsrv.so\n" > /etc/php/7.2/mods-available/sqlsrv.ini && \
+    printf "; priority=30\nextension=pdo_sqlsrv.so\n" > /etc/php/7.2/mods-available/pdo_sqlsrv.ini && \
     phpenmod sqlsrv pdo_sqlsrv && \
     phpenmod sqlsrv sqlsrv
 

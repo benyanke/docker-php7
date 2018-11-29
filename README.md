@@ -22,8 +22,9 @@ or put in a PR to add it.
 
 ## SQL Server
 
-These images provide the SQL server driver (both in standard and PDO flavors). The `7.1` and `7.2` images support this, 
-and 7.3 will support it very soon, as discussed by @yitam in Microsoft/msphpsql#847. There is a dockerfile in `/other`
-which will be used once the PHP SQLSRV driver goes GA for php 7.3.
+These images provide the SQL server driver (both in standard and PDO flavors). The `7.1` and `7.2` images support this, and 
+7.3 will support it very soon, as discussed by [@yitam](https://github.com/yitam) in [this thread on the 
+repo](https://github.com/Microsoft/msphpsql/issues/847#issuecomment-442923004). There is a dockerfile in `/other` which will 
+be used once the PHP SQLSRV driver goes GA for php 7.3.
 
 This driver is still in testing, though will be production ready soon.

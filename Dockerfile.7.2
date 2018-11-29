@@ -16,7 +16,7 @@ RUN apt-get update -y && \
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
     apt-get update -yqq && \
-    ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev unixodbc && \
+    ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev unixodbc --no-install-recommends && \
     rm -r /var/lib/apt/lists/*
 
 # Install Common PHP modules
@@ -58,8 +58,8 @@ RUN apt-get update -y && \
 # Install SQLSRV PHP Drivers
 RUN pecl install pdo_sqlsrv && \
     pecl install sqlsrv && \
-    echo "sqlsrv.so" > /etc/php/7.2/mods-available/sqlsrv.ini && \
-    echo "pdo_sqlsrv.so" > /etc/php/7.2/mods-available/pdo_sqlsrv.ini && \
+    printf "; priority=30\nsqlsrv.so\n" > /etc/php/7.2/mods-available/sqlsrv.ini && \
+    printf "; priority=30\npdo_sqlsrv.so\n" > /etc/php/7.2/mods-available/pdo_sqlsrv.ini && \
     phpenmod sqlsrv pdo_sqlsrv && \
     phpenmod sqlsrv sqlsrv
 

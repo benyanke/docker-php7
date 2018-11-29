@@ -55,7 +55,6 @@ RUN apt-get update -y && \
     curl && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
-
 # Install SQLSRV PHP Drivers
 RUN pecl install pdo_sqlsrv && \
     pecl install sqlsrv && \

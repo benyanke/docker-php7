@@ -60,8 +60,13 @@ RUN pecl install pdo_sqlsrv && \
     pecl install sqlsrv && \
     printf "; priority=30\nextension=sqlsrv.so\n" > /etc/php/7.2/mods-available/sqlsrv.ini && \
     printf "; priority=30\nextension=pdo_sqlsrv.so\n" > /etc/php/7.2/mods-available/pdo_sqlsrv.ini && \
-    phpenmod sqlsrv pdo_sqlsrv && \
-    phpenmod sqlsrv sqlsrv
+    phpenmod sqlsrv pdo_sqlsrv
+
+# Enable Opcache
+RUN phpenmod opcache
+
+# Copy configuration
+COPY config/opcache.ini $PHP_INI_DIR/conf.d/
 
 # TODO:downgrade permissions at some point using a format like this
 # RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres
